@@ -26,8 +26,8 @@
     </nav>
     <div>
         <div class="container">
-            <div class="row" th:each="quest : ${allQuests}" >
-                <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-3" th:each="quest : ${allQuests}">
                     <div class="thumbnail">
                         <div class="caption">
                             <h3 th:text="${quest.title}"></h3>
