@@ -38,3 +38,16 @@ VALUES(
 	, 'これ第三のクエストである。このクエストを受注して完了しよう!'
 	, 'UNDONE'
 );
+-- 第四のクエスト
+INSERT INTO quest(
+	id
+	, title
+	, description
+	, status
+)
+VALUES(
+	3
+	, '第四のクエスト'
+	, 'これ第四のクエストである。このクエストを受注して完了しよう!'
+	, 'UNDONE'
+);
