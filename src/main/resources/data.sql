@@ -46,7 +46,7 @@ INSERT INTO quest(
 	, status
 )
 VALUES(
-	3
+	4
 	, '第四のクエスト'
 	, 'これ第四のクエストである。このクエストを受注して完了しよう!'
 	, 'UNDONE'
