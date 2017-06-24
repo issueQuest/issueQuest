@@ -40,5 +40,12 @@ public class QuestTest {
     quest.setStatus(status);
     assertThat(quest.getStatus(), is(status));
   }
-
+  
+  @Test
+  public void クエスト作成時にタイトルと説明を設定できる() throws Exception {
+    String title = "第二のクエスト";
+    String description = "これは第二のクエストです";
+    quest = new Quest(title, description);
+  }
+  
 }
