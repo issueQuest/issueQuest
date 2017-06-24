@@ -53,5 +53,5 @@ public class AppController {
     String description = questform.getDescription();
     questService.createQuest(title, description);
     return "redirect:/";
-  } 
+  }
 }
