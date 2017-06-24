@@ -24,4 +24,15 @@ public class QuestService {
   public List<Quest> findAllQuests() {
     return questRepository.findAll();
   }
+
+  /**
+   * クエストを一件作成する
+   * @param title クエストのタイトル
+   * @param description クエストの説明
+   * @return 作成されたクエスト
+   */
+  public Quest createQuest(String title, String description) {
+    Quest quest = new Quest(title, description);
+    return questRepository.save(quest);
+  }
 }

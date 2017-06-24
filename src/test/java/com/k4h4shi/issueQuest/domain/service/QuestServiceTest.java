@@ -28,5 +28,14 @@ public class QuestServiceTest {
     List<Quest> allQuests = questService.findAllQuests();
     assertThat(allQuests.size(), is(1));
   }
+  
+  @Test
+  public void createQuestでクエストを一件作成できる() {
+    String title = "初めてのクエスト";
+    String description = "これは初めてのクエストです。";
+    Quest actual = questService.createQuest(title, description);
+    assertThat(actual.getTitle(), is(title));
+    assertThat(actual.getDescription(), is(description));
+  }
 
 }
