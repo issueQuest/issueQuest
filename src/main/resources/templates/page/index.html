@@ -2,46 +2,118 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8"></meta>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-    <title></title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"></link>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
+<meta charset="utf-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<title></title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"></link>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
 </head>
 
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header"><a class="navbar-brand navbar-link" href="#">Issue Quest</a>
-                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-            </div>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav">
-                    <li class="active" role="presentation"><a href="#">First Item</a></li>
-                    <li role="presentation"><a href="#">Second Item</a></li>
-                    <li role="presentation"><a href="#">Third Item</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3" th:each="quest : ${allQuests}">
-                    <div class="thumbnail">
-                        <div class="caption">
-                            <h3 th:text="${quest.title}"></h3>
-                            <p th:text="${quest.description}"></p>
-                            <button class="btn btn-default" type="button">受注</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand navbar-link" href="#">Issue Quest</a>
+				<button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="navcol-1">
+				<ul class="nav navbar-nav">
+					<li class="active" role="presentation">
+						<a href="#">First Item</a>
+					</li>
+					<li role="presentation">
+						<a href="#">Second Item</a>
+					</li>
+					<li role="presentation">
+						<a href="#">Third Item</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- クエスト一覧コンテナ -->
+	<div class="container">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h2>
+						クエスト掲示板
+						<span class="btn-group pull-right">
+							<button type="button" class="btn" data-toggle="modal" data-target="#createQuest">クエストを作成する</button>
+						</span>
+					</h2>
+				</div>
+
+				<div class="panel-body">
+					<div class="col-md-3" th:each="quest : ${allQuests}">
+						<div class="thumbnail">
+							<div class="caption">
+								<h3 th:text="${quest.title}"></h3>
+								<p th:text="${quest.description}"></p>
+								<button class="btn btn-default" type="button">受注</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.panel-body -->
+			</div>
+			<!-- /.panel -->
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container -->
+
+
+	<!-- quest作成モーダル -->
+	<div id="createQuest" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">クエスト作成</h4>
+				</div>
+				<form class="form-horizontal" th:action="@{/}" method="POST" th:object="${questForm}">
+					<div class="modal-body">
+
+						<div class="form-group">
+							<label for="questTitle" class="col-sm-2 control-label">タイトル</label>
+							<div class="col-sm-10">
+								<input th:field="*{title}" type="text" class="form-control" id="questTitle"
+									placeholder="クエストのタイトルを入力してください"></input>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="questDescription" class="col-sm-2 control-label">説明</label>
+							<div class="col-sm-10">
+								<input th:field="*{description}" type="text" class="form-control" id="questDescription"
+									placeholder="クエストの説明を入力してください"></input>
+							</div>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+						<button type="submit" class="btn btn-primary">クエスト作成</button>
+					</div>
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 
 </html>

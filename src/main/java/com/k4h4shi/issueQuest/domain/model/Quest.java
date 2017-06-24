@@ -29,8 +29,25 @@ public class Quest {
    */
   private String description;
   /**
-   * クエストの状態 
+   * クエストの状態
    */
   @Enumerated(EnumType.STRING)
   private QuestStatus status;
+  /**
+   * デフォルトのコンストラクタ
+   */
+  public Quest() {}
+
+  /**
+   * 題名と説明を受け取り、クエストを作成するコンストラクタ
+   * 
+   * @param title 題名
+   * @param description 説明
+   */
+  public Quest(String title, String description) {
+    this.title = title;
+    this.description = description;
+    status = QuestStatus.UNDONE;
+  }
+
 }
