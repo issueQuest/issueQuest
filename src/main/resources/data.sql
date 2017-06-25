@@ -38,6 +38,19 @@ VALUES(
 	, 'これ第三のクエストである。このクエストを受注して完了しよう!'
 	, 'UNDONE'
 );
+-- 第四のクエスト
+INSERT INTO quest(
+	id
+	, title
+	, description
+	, status
+)
+VALUES(
+	4
+	, '第四のクエスト'
+	, 'これ第四のクエストである。このクエストを受注して完了しよう!'
+	, 'UNDONE'
+);
 
 --ユーザー情報
 INSERT INTO user (
@@ -50,4 +63,4 @@ INSERT INTO user (
 	, '管理者 太郎'
 	, 'admin'
 	, 'pass'
-)
+);
