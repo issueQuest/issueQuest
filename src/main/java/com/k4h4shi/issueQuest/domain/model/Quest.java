@@ -34,9 +34,12 @@ public class Quest {
   @Enumerated(EnumType.STRING)
   private QuestStatus status;
   /**
-   * デフォルトのコンストラクタ
+   * デフォルトのコンストラクタ 
+   * クエスト作成時の初期状態は未受注となる
    */
-  public Quest() {}
+  public Quest() {
+    status = QuestStatus.UNDONE;
+  }
 
   /**
    * 題名と説明を受け取り、クエストを作成するコンストラクタ
