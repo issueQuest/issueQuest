@@ -51,3 +51,16 @@ VALUES(
 	, 'これ第四のクエストである。このクエストを受注して完了しよう!'
 	, 'UNDONE'
 );
+
+--ユーザー情報
+INSERT INTO user (
+	id
+	, username
+	, email
+	, password
+) VALUES (
+	1
+	, '管理者 太郎'
+	, 'admin'
+	, 'pass'
+);
