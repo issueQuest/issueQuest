@@ -9,3 +9,12 @@ spring:
   datasource:
     url: jdbc:h2:mem:AZ;DB_CLOSE_ON_EXIT=TRUE
     driver-class-name: org.h2.Driver
+
+# 単体テスト環境用
+---
+spring:
+  profiles: unit
+  datasource:
+    url: jdbc:h2:mem:AZ;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    data: data-unit.sql
