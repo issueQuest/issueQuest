@@ -58,7 +58,20 @@
 							<div class="caption">
 								<h3 th:text="${quest.title}"></h3>
 								<p th:text="${quest.description}"></p>
-								<button class="btn btn-default" type="button">受注</button>
+								<p th:text="${quest.status}"></p>
+								<form th:method="PUT" th:action="@{/{questId}/(questId = ${quest.id})}">
+
+									<div th:switch="*{quest.status.name()}">
+										<div th:case="'UNDONE'">
+											<input type="hidden" name="status" th:value="'DOING'" />
+											<button class="btn btn-default" type="submit">受注</button>
+										</div>
+										<div th:case="'DOING'">
+											<input type="hidden" name="status" th:value="'DONE'" />
+											<button class="btn btn-default" type="submit">終了</button>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -68,7 +81,9 @@
 			<!-- /.panel -->
 		</div>
 		<!-- /.row -->
-		<button><a href="/logout">LOG OUT</a></button>
+		<button>
+			<a href="/logout">LOG OUT</a>
+		</button>
 	</div>
 	<!-- /.container -->
 

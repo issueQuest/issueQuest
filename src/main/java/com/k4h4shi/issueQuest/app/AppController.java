@@ -1,14 +1,17 @@
 package com.k4h4shi.issueQuest.app;
 
 import com.k4h4shi.issueQuest.domain.model.Quest;
+import com.k4h4shi.issueQuest.domain.model.QuestStatus;
 import com.k4h4shi.issueQuest.domain.service.QuestService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * アプリケーションのコントローラ
@@ -52,6 +55,18 @@ public class AppController {
     String title = questform.getTitle();
     String description = questform.getDescription();
     questService.createQuest(title, description);
+    return "redirect:/";
+  }
+  
+  /**
+   * クエストの状態を変更する
+   * @param questId クエストのId
+   * @param status クエストの状態
+   * @return トップ画面
+   */
+  @RequestMapping(path = "/{questId}/", method = RequestMethod.PUT)
+  public String updateQuest(@PathVariable String questId, @RequestParam QuestStatus status) {
+    questService.updateQuestStatus(questId, status);
     return "redirect:/";
   }
 }
