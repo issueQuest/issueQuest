@@ -3,6 +3,7 @@ package com.k4h4shi.issueQuest.domain.service;
 import com.k4h4shi.issueQuest.domain.model.Quest;
 import com.k4h4shi.issueQuest.domain.model.QuestStatus;
 import com.k4h4shi.issueQuest.domain.repository.QuestRepository;
+import java.util.Comparator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,9 @@ public class QuestService {
    * @return 全てのクエスト
    */
   public List<Quest> findAllQuests() {
-    return questRepository.findAll();
+    List<Quest> allQuests = questRepository.findAll();
+    allQuests.sort(createQuestComparator());
+    return allQuests;
   }
 
   /**
@@ -60,5 +63,18 @@ public class QuestService {
     target.setStatus(status);
     
     questRepository.flush();
+  }
+  
+  /**
+   * クエストのIdで比較するコンパレータを生成する
+   * @return クエストのIDで比較するコンパレータ
+   */
+  private Comparator<Quest> createQuestComparator() {
+    return new Comparator<Quest>() {
+
+      @Override
+      public int compare(Quest q1, Quest q2) {
+        return q1.getId().compareTo(q2.getId());
+      }};
   }
 }
