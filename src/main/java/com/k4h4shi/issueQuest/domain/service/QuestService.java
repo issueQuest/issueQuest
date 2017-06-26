@@ -58,5 +58,7 @@ public class QuestService {
       return;
     }
     target.setStatus(status);
+    
+    questRepository.flush();
   }
 }
