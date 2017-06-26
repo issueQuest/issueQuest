@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * クエストのサービス
@@ -25,6 +26,7 @@ public class QuestService {
    * 
    * @return 全てのクエスト
    */
+  @Transactional(readOnly = true)
   public List<Quest> findAllQuests() {
     List<Quest> allQuests = questRepository.findAll();
     allQuests.sort(createQuestComparator());
@@ -38,6 +40,7 @@ public class QuestService {
    * @param description クエストの説明
    * @return 作成されたクエスト
    */
+  @Transactional()
   public Quest createQuest(String title, String description) {
     Quest quest = new Quest(title, description);
     return questRepository.save(quest);
@@ -49,6 +52,7 @@ public class QuestService {
    * @param questId クエストのId
    * @param status クエストの状態
    */
+  @Transactional()
   public void updateQuestStatus(String questId, QuestStatus status) {
     if (!questRepository.exists(questId)) {
       // TODO update対象が存在しない場合の例外を送出する
