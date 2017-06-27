@@ -48,4 +48,9 @@ public class QuestTest {
     quest = new Quest(title, description);
   }
   
+  @Test
+  public void クエスト作成時の初期状態は未受注である() {
+    assertThat(quest.getStatus(), is(QuestStatus.UNDONE));
+  }
+  
 }
