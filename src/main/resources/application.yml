@@ -7,14 +7,17 @@ spring:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:h2:mem:AZ;DB_CLOSE_ON_EXIT=TRUE
+    url: jdbc:h2:mem:AZ;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
+    sql-script-encoding: UTF-8
+    
 
 # 単体テスト環境用
 ---
 spring:
   profiles: unit
   datasource:
-    url: jdbc:h2:mem:AZ;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:mem:AZ;DB_CLOSE_ON_EXIT=FALSE;characterEncoding=UTF-8
     driver-class-name: org.h2.Driver
     data: data-unit.sql
+    sql-script-encoding: UTF-8
