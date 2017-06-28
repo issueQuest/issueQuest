@@ -1,15 +1,13 @@
-package com.herokuapp.issue_quest.app;
+package com.herokuapp.issue_quest.app.quest;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * クエスト作成のためのフォーム
  * @author k4h4shi
  *
  */
-@Getter
-@Setter
+@Data
 public class QuestForm {
   /**
    * タイトル

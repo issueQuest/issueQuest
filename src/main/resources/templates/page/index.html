@@ -15,7 +15,7 @@
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand navbar-link" href="#">Issue Quest</a>
+				<a class="navbar-brand navbar-link" th:href="@{/}">Issue Quest</a>
 				<button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
@@ -25,111 +25,31 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navcol-1">
 				<ul class="nav navbar-nav">
-					<li class="active" role="presentation">
-						<a href="#">First Item</a>
-					</li>
 					<li role="presentation">
-						<a href="#">Second Item</a>
-					</li>
-					<li role="presentation">
-						<a href="#">Third Item</a>
+						<a th:href="@{/quests/}">クエスト掲示板</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
-	<!-- クエスト一覧コンテナ -->
+	<!-- トップ画面 -->
 	<div class="container">
-		<div class="row">
-			<div class="panel panel-default">
-				<div class="panel-heading clearfix">
-					<h2>
-						クエスト掲示板
-						<span class="btn-group pull-right">
-							<button type="button" class="btn" data-toggle="modal" data-target="#createQuest">クエストを作成する</button>
-						</span>
-					</h2>
-				</div>
-
-				<div class="panel-body">
-					<div class="col-md-3" th:each="quest : ${allQuests}">
-						<div class="thumbnail">
-							<div class="caption">
-								<h3 th:inline="text">
-									[[${quest.title}]]
-									<span th:text="${quest.status}" class="badge badge-default"></span>
-								</h3>
-								<p th:text="${quest.description}"></p>
-								<form th:method="PUT" th:action="@{/{questId}/(questId = ${quest.id})}">
-
-									<div th:switch="*{quest.status.name()}">
-										<div th:case="'UNDONE'">
-											<input type="hidden" name="status" th:value="'DOING'" />
-											<button class="btn btn-default" type="submit">受注</button>
-										</div>
-										<div th:case="'DOING'">
-											<input type="hidden" name="status" th:value="'DONE'" />
-											<button class="btn btn-default" type="submit">終了</button>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- /.panel-body -->
-			</div>
-			<!-- /.panel -->
+		<div class="jumbotron">
+			<h1 class="display-3">困リゴトクエストへようこそ！</h1>
+			<p class="lead">困りごとをクエストとして依頼したり、受注したりと楽しく解決するためのサービスです</p>
+			<hr class="my-4"></hr>
+			<p>まずはクエスト掲示板にて、クエストを作成してみましょう</p>
+			<p class="lead">
+				<a class="btn btn-primary btn-lg" th:href="@{/quests/}" role="button">クエスト掲示板を見てみる</a>
+			</p>
 		</div>
-		<!-- /.row -->
+		<!-- /.container -->
 		<button>
 			<a href="/logout">LOG OUT</a>
 		</button>
 	</div>
-	<!-- /.container -->
 
-
-	<!-- quest作成モーダル -->
-	<div id="createQuest" class="modal fade" tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title">クエスト作成</h4>
-				</div>
-				<form class="form-horizontal" th:action="@{/}" method="POST" th:object="${questForm}">
-					<div class="modal-body">
-
-						<div class="form-group">
-							<label for="questTitle" class="col-sm-2 control-label">タイトル</label>
-							<div class="col-sm-10">
-								<input th:field="*{title}" type="text" class="form-control" id="questTitle"
-									placeholder="クエストのタイトルを入力してください"></input>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="questDescription" class="col-sm-2 control-label">説明</label>
-							<div class="col-sm-10">
-								<input th:field="*{description}" type="text" class="form-control" id="questDescription"
-									placeholder="クエストの説明を入力してください"></input>
-							</div>
-						</div>
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-						<button type="submit" class="btn btn-primary">クエスト作成</button>
-					</div>
-				</form>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
-	<!-- /.modal -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
