@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-<meta charset="utf-8"></meta>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-<title></title>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"></link>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
-</head>
-
+<head th:include="/common/header::header"></head>
 <body>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -77,9 +67,9 @@
 			<!-- /.panel -->
 		</div>
 		<!-- /.row -->
-		<button>
-			<a href="/logout">LOG OUT</a>
-		</button>
+		<a th:href="@{/logout}" class="btn btn-default">
+			LOG OUT
+		</a>
 	</div>
 	<!-- /.container -->
 
@@ -124,8 +114,5 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
-
 </html>

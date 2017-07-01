@@ -32,6 +32,6 @@ public class AppControllerTest {
   public void アプリケーションコントローラはトップ画面を返す() throws Exception {
     mockMvc.perform(get("/")).andExpect(status().isOk())
         .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-        .andExpect(view().name("page/index"));
+        .andExpect(view().name("index"));
   }
 }
