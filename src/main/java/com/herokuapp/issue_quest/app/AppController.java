@@ -21,6 +21,6 @@ public class AppController {
    */
   @RequestMapping(path = "/")
   public String getAllQuests(Model model) {
-    return "page/index";
+    return "index";
   }
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head th:include="/page/common/header::header"></head>
+	<head th:include="/common/header::header"></head>
 <body>
 	<div class="alert alert-warning" style="margin-bottom:0;" role="alert" th:if="${param.logout}">You have been logged out</div>
 	<div class="alert alert-danger" style="margin-bottom:0;" role="alert" th:if="${param.error}">ユーザー名またはパスワードが間違っています</div>
