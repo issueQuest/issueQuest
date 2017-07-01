@@ -21,3 +21,10 @@ spring:
     driver-class-name: org.h2.Driver
     data: data-unit.sql
     sql-script-encoding: UTF-8
+
+---  
+spring:
+  messages:
+    basename: message/messages
+    cache-seconds: -1
+    encoding: UTF-8
