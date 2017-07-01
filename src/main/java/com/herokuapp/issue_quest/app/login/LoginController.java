@@ -18,6 +18,6 @@ public class LoginController {
 	 */
 	@RequestMapping("/")
 	public String showLoginForm() {
-		return "/login/login";
+		return "login/login";
 	}
 }
