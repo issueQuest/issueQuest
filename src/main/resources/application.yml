@@ -17,7 +17,7 @@ spring:
   profiles: dev
   datasource:
     url: jdbc:h2:mem:AZ;DB_CLOSE_ON_EXIT=FALSE
-    driver-class-name: org.h2.Driver111111
+    driver-class-name: org.h2.Driver
     sql-script-encoding: UTF-8
     
 
