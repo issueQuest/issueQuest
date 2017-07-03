@@ -1,6 +1,6 @@
 -- 初期化
 DELETE FROM quest;
-DELETE FROM user;
+DELETE FROM account;
 
 -- クエスト
 INSERT INTO quest(
@@ -17,14 +17,12 @@ VALUES(
 );
 
 --ユーザー情報
-INSERT INTO user (
+INSERT INTO account (
 	id
-	, username
 	, email
 	, password
 ) VALUES (
 	1
-	, '管理者 太郎'
 	, 'admin'
 	, 'pass'
 );

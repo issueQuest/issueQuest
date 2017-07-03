@@ -52,15 +52,32 @@ VALUES(
 	, 'UNDONE'
 );
 
---ユーザー情報
-INSERT INTO user (
+--アカウント情報
+INSERT INTO account (
 	id
-	, username
 	, email
 	, password
 ) VALUES (
 	1
-	, '管理者 太郎'
 	, 'admin'
 	, 'pass'
+);
+
+--ユーザー情報
+INSERT INTO user_info (
+	account_id
+	, family_name
+	, given_name
+	, family_name_kana
+	, given_name_kana
+	, gender
+	, introduction
+) VALUES (
+	1
+	, '山田'
+	, '太郎'
+	, 'ヤマダ'
+	, 'タロウ'
+	, 'MAN'
+	, '自己紹介'
 );

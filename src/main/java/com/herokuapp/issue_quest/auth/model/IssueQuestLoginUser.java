@@ -6,21 +6,39 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.herokuapp.issue_quest.domain.model.User;
+import com.herokuapp.issue_quest.constants.Constants;
+import com.herokuapp.issue_quest.domain.model.Account;
+import com.herokuapp.issue_quest.domain.model.UserInfo;
 
 /**
  * 困リゴトクエストログインユーザー情報
  * @author obscure12
  *
  */
-public class IssueQuestLoginUser extends User implements UserDetails{
+public class IssueQuestLoginUser  implements UserDetails{
+
+	/**
+	 * アカウントID
+	 */
+	private Long accountId;
+
+	/**
+	 * パスワード
+	 */
+	private String password;
+
+	/**
+	 * ユーザー情報
+	 */
+	private UserInfo userInfo;
 
 	/**
 	 * コンストラクタ
 	 * @param user User
 	 */
-	public IssueQuestLoginUser(User user) {
-		super(user.getEmail(), user.getPassword());
+	public IssueQuestLoginUser(Account account) {
+		super();
+		this.password = account.getPassword();
 	}
 
 	/**
@@ -61,5 +79,50 @@ public class IssueQuestLoginUser extends User implements UserDetails{
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+	/**
+	 * アカウントIDの取得
+	 * @return アカウントID
+	 */
+	public Long getAccountId() {
+		return accountId;
+	}
+
+	/**
+	 * アカウントIDの設定
+	 * @param accountId アカウントID
+	 */
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
+
+	@Override
+	public String getPassword() {
+		return this.password;
+	}
+
+	@Override
+	public String getUsername() {
+		if (this.userInfo == null) {
+			return null;
+		}
+		return this.userInfo.getFamilyName() + Constants.Character.SPACE + this.userInfo.getGivenName();
+	}
+
+	/**
+	 * ユーザー情報の取得
+	 * @return ユーザー情報
+	 */
+	public UserInfo getUserInfo() {
+		return userInfo;
+	}
+
+	/**
+	 * ユーザー情報の設定
+	 * @param userInfo ユーザー情報
+	 */
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
 	}
 }

@@ -2,14 +2,14 @@ package com.herokuapp.issue_quest.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.herokuapp.issue_quest.domain.model.User;
+import com.herokuapp.issue_quest.domain.model.UserInfo;
 
 /**
  * ユーザーのリポジトリ
  * @author obscure12
  *
  */
-public interface UserRepository extends JpaRepository<User, String> {
+public interface UserInfoRepository extends JpaRepository<UserInfo, String> {
 
-	User findByEmail(String email);
+	UserInfo findByAccountId(Long accountId);
 }
