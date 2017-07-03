@@ -1,6 +1,7 @@
 -- 初期化
 DELETE FROM quest;
 DELETE FROM account;
+DELETE FROM user_info;
 
 -- クエスト
 INSERT INTO quest(
@@ -16,13 +17,32 @@ VALUES(
 	, 'UNDONE'
 );
 
---ユーザー情報
+--アカウント情報
 INSERT INTO account (
 	id
 	, email
 	, password
 ) VALUES (
 	1
-	, 'admin'
-	, 'pass'
+	, 'test@test.com'
+	, 'test'
+);
+
+-- ユーザー情報
+INSERT INTO user_info (
+	account_id
+	, family_name
+	, given_name
+	, family_name_kana
+	, given_name_kana
+	, gender
+	, introduction
+) VALUES (
+	1
+	, '山田'
+	, '太郎'
+	, 'ヤマダ'
+	, 'タロウ'
+	, 'MAN'
+	, '自己紹介です'
 );
