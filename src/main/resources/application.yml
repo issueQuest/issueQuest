@@ -50,6 +50,21 @@ spring:
     data: data-unit.sql
     sql-script-encoding: UTF-8
 
+#本番環境用
+---
+spring:
+  profiles: master
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: none  
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://${database.host}/${database.name}?&user=${database.user}&password=${database.password}&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+    driverClassName: org.postgresql.Driver
+    sql-script-encoding: UTF-8
+
 ---  
 spring:
   messages:
